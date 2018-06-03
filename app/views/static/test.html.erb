@@ -1,0 +1,7 @@
+TEST
+<%= @testing %>
+
+<% if session[:user_id] %>
+
+<%= link_to 'Sign-out', signout_path %>
+<% end %>
