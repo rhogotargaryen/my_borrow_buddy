@@ -6,6 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :value
       t.integer :owner_id
       t.integer :user_id
+      t.string :requested
 
       t.timestamps
     end

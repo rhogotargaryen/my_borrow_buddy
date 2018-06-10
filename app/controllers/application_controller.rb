@@ -6,13 +6,42 @@ class ApplicationController < ActionController::Base
     end
     
     
-    def set_check_user
-        check_user
-        return head(:forbidden) unless @user == current_user
+    def check_user
+        return head(:forbidden) unless  @user == current_user
     end
     
-    def check_user
+    def set_user
         @user = User.find_by(id: params[:id])
     end
     
+    def logged_in?
+        return head(:forbidden) if current_user.nil?
+    end
+    
+    def set_item
+        @item = Item.find_by(id: params[:id])
+    end
+    
+    def check_item
+        if @item.nil?
+           redirect_to new_item_path
+        else 
+            item.owner_id == current_user.id
+        end
+    end
+    
+    def logged_and_owns_itenm
+        logged_in?
+        set_item
+        check_item
+    end
+    
+    def set_check_user
+        set_user
+        check_user
+    end
+    
+    def cancel(item)
+        redirect_to(item_path(item)) and return
+    end
 end
