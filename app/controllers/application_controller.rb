@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     
     
     def check_user
-        return head(:forbidden) unless  @user == current_user
+        return head(:forbidden) unless @user == current_user
     end
     
     def set_user

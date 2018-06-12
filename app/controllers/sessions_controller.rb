@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
     
     def new
+        if session[:user_id]
+            @message = "you are already logged in"
+            redirect_to user_path(current_user, :message => @message)
+        end
         @user = User.new
     end
     
@@ -16,7 +20,7 @@ class SessionsController < ApplicationController
     
     def destroy
         session.destroy
-        redirect_to test_url
+        redirect_to root_url
     end
     
 end

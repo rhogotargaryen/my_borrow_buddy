@@ -5,33 +5,40 @@ INDEXING ALL ITEMS:
   <%= link_to "show item", item_path(x) %>
 <% end %> 
 </br>
-TESTING CRRUENT USER: <%= current_user.name %></br>
+<% if @user %>
 </br>
-</br>
-TESTING BORROWABLE
-</br>
-<% displayable_b_items(@items).each do |x| %>
-  </br><%= button_to "borrow #{x.name}", new_item_transaction_path(x), params: { category: "submit_borrow" } %>
-<% end %>
 
-</br>
-TESTING ALLOWING BORROW OF ITEMS
-</br>
-<% allowable_items(@items).each do |x| %>
-  <%= x.name %></br>
-  <%= x.id_recipient %>
-  <%= button_to "allow borrow  #{x.name}", new_item_transaction_path(x), params: { category: "allow_borrow", recipient_id: x.id_recipient } %>
-<% end %>
+  TESTING CURRENT USER: 
+    <%= current_user.name %></br>
+  
+  </br>
+  TESTING BORROWABLE
+  </br>
+  <% displayable_b_items(@items).each do |x| %>
+    </br><%= button_to "request borrow #{x.name}", new_item_transaction_path(x), params: { category: "submit_borrow" } %>
+  <% end %>
+  
+  </br>
+  TESTING ALLOWING BORROW OF ITEMS
+  </br>
+  
+  <% allowable_items(@items).each do |x| %>
+    <%= x.name %></br>
+    <%= x.id_recipient %>
+    <%= button_to "allow borrow  #{x.name}", new_item_transaction_path(x), params: { category: "allow_borrow", recipient_id: x.id_recipient } %>
+  <% end %>
+  
+  </br>
+  TESTING RETURNABLE ITEMS
+  </br>
+  <% returnable_items(@items).each do |x| %>
+    <%= button_to "request return #{x.name}", new_item_transaction_path(x), params: { category: "submit_return", recipient_id: x.id_recipient } %>
+  <% end %>
+  
+  </br> TESTING RETURNING OF ITEMS
+  </br>
+  <% r_allowable_items(@items).each do |x| %>
+    <%= button_to "allow return #{x.name}", new_item_transaction_path(x),  params: { category: "allow_return", recipient_id: x.id_recipient } %>
+  <% end %>
 
-</br>
-TESTING RETURNABLE ITEMS
-</br>
-<% returnable_items(@items).each do |x| %>
-  <%= button_to "request #{x.name}", new_item_transaction_path(x), params: { category: "submit_return", recipient_id: x.id_recipient } %>
-<% end %>
-
-</br> TESTING RETURNING OF ITEMS
-</br>
-<% r_allowable_items(@items).each do |x| %>
-  <%= button_to "allow return #{x.name}", new_item_transaction_path(x),  params: { category: "allow_return", recipient_id: x.id_recipient } %>
 <% end %>

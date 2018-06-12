@@ -1,1 +1,9 @@
-SHOWING <%= @item.attributes %>
+SHOWING <%= @item.name%> </br>
+<% show_item_info(@item).each do |x| %>
+  <%= x %></br>
+<% end %>
+
+<% if @item.user == current_user %>
+
+  </br><%= button_to "delete #{@item.name}", @item, method: :delete, data: { confirm: "click OK to confirm deletion of user" } %>
+ <% end %>

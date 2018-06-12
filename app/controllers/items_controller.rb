@@ -6,7 +6,8 @@ class ItemsController < ApplicationController
     
     def index
         if params[:user_id]
-            @items = User.find_by(id: params[:user_id]).items
+            @user = User.find_by(id: params[:user_id])
+            @items = @user.items
         else
             @items = Item.all
         end
@@ -21,7 +22,6 @@ class ItemsController < ApplicationController
         @item.owner_id = current_user.id
         @item.user = current_user
         @item.requested = "added_item"
-        byebug
         if @item.save
             @item.transactions << Transaction.new(category: "add_item", recipient_id: current_user.id)
             redirect_to item_url(@item)
@@ -43,6 +43,11 @@ class ItemsController < ApplicationController
         else
             render :edit
         end
+    end
+    
+    def delete
+        @item.delete
+        redirect_to user_url(current_user)
     end
     
     private

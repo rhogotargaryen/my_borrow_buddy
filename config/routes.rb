@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     resources :items, only: [:show, :new, :index, :edit]
   end
   
+  root 'static#welcome'
   get '/test', to: 'static#test'
   get '/signin', to: 'sessions#new'
   get '/signout', to: "sessions#destroy"
+  get '/signup', to: 'users#new'
   post '/signin', to: 'sessions#create'
   post '/items/:item_id/transactions/new', to: 'transactions#new'
 end
