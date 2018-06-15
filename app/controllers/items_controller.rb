@@ -8,6 +8,7 @@ class ItemsController < ApplicationController
         if params[:user_id]
             @user = User.find_by(id: params[:user_id])
             @items = @user.items
+            @o_items = Item.owned_by(@user.id)
         else
             @items = Item.all
         end
@@ -26,6 +27,7 @@ class ItemsController < ApplicationController
             @item.transactions << Transaction.new(category: "add_item", recipient_id: current_user.id)
             redirect_to item_url(@item)
         else
+            @messages = @item.errors
             render :new
         end
     end

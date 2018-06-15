@@ -1,25 +1,40 @@
-INDEXING ALL ITEMS:
+
+</br>
+ <% if current_user %>
+   Hello, <%= current_user.name %> </br>
+ <% else %>
+     please <%= link_to 'log in', signin_path %>
+ <% end %>
+    
+  
+
+INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </br>
 <% @items.each do |x| %>
   </br>
   <%= x.name %>
   <%= link_to "show item", item_path(x) %>
 <% end %> 
 </br>
-<% if @user %>
-</br>
 
-  TESTING CURRENT USER: 
-    <%= current_user.name %></br>
-  
+
+
+<% if current_user %>
   </br>
   TESTING BORROWABLE
   </br>
-  <% displayable_b_items(@items).each do |x| %>
-    </br><%= button_to "request borrow #{x.name}", new_item_transaction_path(x), params: { category: "submit_borrow" } %>
+  <% @items.borrowable.map  do |x|%>
+    <% if x.user_id != current_user.id  %>
+      </br><%= button_to "request borrow #{x.name}", new_item_transaction_path(x), params: { category: "submit_borrow" } %>
+    <% end %>
   <% end %>
-  
+<% end %>
+
+</br>
+
+ 
+<% if @user && @user == current_user %> 
   </br>
-  TESTING ALLOWING BORROW OF ITEMS
+  TEST ALLOWING BORROW OF ITEMS
   </br>
   
   <% allowable_items(@items).each do |x| %>
@@ -29,16 +44,23 @@ INDEXING ALL ITEMS:
   <% end %>
   
   </br>
-  TESTING RETURNABLE ITEMS
+  TEST RETURNABLE ITEMS
   </br>
   <% returnable_items(@items).each do |x| %>
     <%= button_to "request return #{x.name}", new_item_transaction_path(x), params: { category: "submit_return", recipient_id: x.id_recipient } %>
   <% end %>
   
-  </br> TESTING RETURNING OF ITEMS
+  </br> TEST RETURNING OF ITEMS
   </br>
   <% r_allowable_items(@items).each do |x| %>
     <%= button_to "allow return #{x.name}", new_item_transaction_path(x),  params: { category: "allow_return", recipient_id: x.id_recipient } %>
   <% end %>
 
-<% end %>
+TESTING ITEMS OWNED AND BORROWED
+  <% @o_items.borrowed.map do |x| %>
+    </br><%= link_to "view #{x.name}", item_path(x) %>: borrowed by: <%= x.borrower.name %>
+  <% end %>
+</br>
+ 
+
+<% end %>    
