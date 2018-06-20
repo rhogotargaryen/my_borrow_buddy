@@ -9,12 +9,17 @@ class SessionsController < ApplicationController
     end
     
     def create
-        @user = User.find_by(name: params[:user][:name])
-        if @user && @user.authenticate(params[:user][:password])
+        if auth_hash
+            @user = User.find_or_create_by_oauth(auth_hash)
             session[:user_id] = @user.id
             redirect_to '/test'
-        else
-            redirect_to '/signin'
+        else @user = User.find_by(name: params[:user][:name])
+            if @user && @user.authenticate(params[:user][:password])
+                session[:user_id] = @user.id
+                redirect_to '/test'
+            else
+                redirect_to '/signin'
+            end
         end
     end
     
@@ -22,5 +27,9 @@ class SessionsController < ApplicationController
         session.destroy
         redirect_to root_url
     end
+    
+  def auth_hash
+    request.env['omniauth.auth']
+  end
     
 end
