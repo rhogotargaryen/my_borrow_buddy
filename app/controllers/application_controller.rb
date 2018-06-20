@@ -26,11 +26,11 @@ class ApplicationController < ActionController::Base
         if @item.nil?
            redirect_to new_item_path
         else 
-            item.owner_id == current_user.id
+            @item.owner_id == current_user.id
         end
     end
     
-    def logged_and_owns_itenm
+    def logged_and_owns_item
         logged_in?
         set_item
         check_item

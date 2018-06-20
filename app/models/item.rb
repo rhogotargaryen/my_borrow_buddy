@@ -30,4 +30,9 @@ class Item < ApplicationRecord
     def self.allow_borrow
         self.where('user_id == owner_id').where('requested = ?', 'submit_borrow')
     end
+    
+    def self.allow_return 
+        self.where('user_id != owner_id').where('requested = ?', 'submit_return')
+    end
+    
 end

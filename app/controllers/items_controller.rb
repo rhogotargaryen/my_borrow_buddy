@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-    before_action :logged_and_owns_itenm
+    before_action :logged_and_owns_item
     before_action :logged_in?, only: [:new, :create]
     
-    skip_before_action :logged_and_owns_itenm, only: [:index, :show, :new, :create]
+    skip_before_action :logged_and_owns_item, only: [:index, :show, :new, :create]
     
     def index
         if params[:user_id]

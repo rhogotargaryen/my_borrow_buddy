@@ -5,7 +5,7 @@
  <% else %>
      please <%= link_to 'log in', signin_path %>
  <% end %>
-    
+</br>   
   
 
 INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </br>
@@ -19,44 +19,32 @@ INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </br>
 
 
 <% if current_user %>
-  </br>
-  TESTING BORROWABLE
-  </br>
-  <% @items.borrowable.map  do |x|%>
-    <% if x.user_id != current_user.id  %>
-      </br><%= button_to "request borrow #{x.name}", new_item_transaction_path(x), params: { category: "submit_borrow" } %>
-    <% end %>
-  <% end %>
-<% end %>
+  
+</br> Borrowable items</br>
 
+  <%= render'borrowable_items', al_items: Item.all %>
+<% end %>
 </br>
 
  
 <% if @user && @user == current_user %> 
-  </br>
-  TEST ALLOWING BORROW OF ITEMS
-  </br>
-  
-  <% allowable_items(@items).each do |x| %>
-    <%= x.name %></br>
-    <%= x.id_recipient %>
-    <%= button_to "allow borrow  #{x.name}", new_item_transaction_path(x), params: { category: "allow_borrow", recipient_id: x.id_recipient } %>
-  <% end %>
   
   </br>
-  TEST RETURNABLE ITEMS
+    Items allowed to borrow
   </br>
-  <% returnable_items(@items).each do |x| %>
-    <%= button_to "request return #{x.name}", new_item_transaction_path(x), params: { category: "submit_return", recipient_id: x.id_recipient } %>
-  <% end %>
-  
-  </br> TEST RETURNING OF ITEMS
+  <%= render 'allow_borrow' %>
+  </br> Items borrowed to be returned
   </br>
-  <% r_allowable_items(@items).each do |x| %>
-    <%= button_to "allow return #{x.name}", new_item_transaction_path(x),  params: { category: "allow_return", recipient_id: x.id_recipient } %>
-  <% end %>
 
-TESTING ITEMS OWNED AND BORROWED
+  <%= render 'returnable_items' %>
+  </br>
+    Accept a return of your borrowed out item
+  </br>
+  <%= render 'allow_return' %>
+  </br>
+  
+These are your items out on loan:
+</br>
   <% @o_items.borrowed.map do |x| %>
     </br><%= link_to "view #{x.name}", item_path(x) %>: borrowed by: <%= x.borrower.name %>
   <% end %>
