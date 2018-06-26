@@ -1,4 +1,4 @@
-INDEXING ALL USERS:
+INDEXING ALL USERS:</br>
 <% @users.all.each do  |x| %>
-  <%= x.name %>
+  <%= link_to x.name, user_path(x) %> </br>
 <% end %>

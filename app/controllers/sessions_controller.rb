@@ -28,8 +28,8 @@ class SessionsController < ApplicationController
         redirect_to root_url
     end
     
-  def auth_hash
-    request.env['omniauth.auth']
-  end
+    def auth_hash
+      request.env['omniauth.auth']
+    end
     
 end

@@ -1,15 +1,23 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title>BorrowBuddy</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <%= stylesheet_link_tag "styles" %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>borrow buddy</title>
 
-  <body>
-    <%= yield %>
-  </body>
+</head>
+
+<body style="background-color:rgba(105,90,37,0.43);">
+    <div class="d-flex justify-content-between align-items-center" id="nav-bar">
+        <div id="brand" class="navitem">
+            <p>My Borrow Buddy</p>
+        </div>
+        <div id="nav-links" class="navitem"><a href="#" class="navlink">Users</a><a href="#" class="navlink">Items</a></div>
+        <div id="sesion-links" class="navitem"><a href="#" class="navlink">Login</a><a href="#" class="navlink">Signup</a></div>
+    </div>
+    <div class="d-flex flex-column" id="main-content"><%= yield %></div>
+</body>
+
 </html>

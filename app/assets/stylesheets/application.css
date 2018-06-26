@@ -13,3 +13,29 @@
  *= require_tree .
  *= require_self
  */
+#nav-bar {
+  height:10vh;
+  background-color:rgba(0,0,0,0.32);
+}
+
+.navitem {
+  margin-right:5px;
+  margin-left:5px;
+}
+
+.navlink {
+  margin-right:5px;
+  margin-left:5px;
+  background-color:rgba(255,255,255,0.32);
+  padding:5px;
+  color:rgba(255,255,255,0.92);
+}
+
+#main-content {
+  height:90vh;
+  margin:5vh;
+  margin-right:10vh;
+  margin-left:10vh;
+  background-color:rgba(0,0,0,0.32);
+}
+
