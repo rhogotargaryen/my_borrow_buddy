@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
     
     def show
         set_item
+        redirect_to items_path(message: "item not found") if @item.nil?
     end
     
     def edit

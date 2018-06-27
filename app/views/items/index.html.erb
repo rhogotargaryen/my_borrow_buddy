@@ -1,50 +1,46 @@
-
+<% if params[:message] %>
+  <p><%= params[:message]  %></p>
+<% end %>
 </br>
  <% if current_user %>
-   Hello, <%= current_user.name %> </br>
+   Hello, <%= current_user.name %> 
+   would you like to <%= link_to "create an item?", new_item_path, class: "navlink" %> 
  <% else %>
      please <%= link_to 'log in', signin_path %>
  <% end %>
 </br>   
   
 
-INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </br>
+<p>INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </p>
 <% @items.each do |x| %>
   </br>
-  <%= x.name %>
-  <%= link_to "show item", item_path(x) %>
+  <p>
+  <%= link_to "#{x.name}", item_path(x) %></p>
 <% end %> 
 </br>
 
-
-
 <% if current_user %>
-  
-</br> Borrowable items</br>
-
-  <%= render'borrowable_items', al_items: Item.all %>
+  <p>Borrowable Items:</p>
+    <%= render'borrowable_items', al_items: Item.all %>
 <% end %>
 </br>
-
  
 <% if @user && @user == current_user %> 
-  
   </br>
-    Items allowed to borrow
+    <p>Items allowed to borrow</p>
   </br>
   <%= render 'allow_borrow' %>
-  </br> Items borrowed to be returned
+  </br> <p>Items borrowed to be returned</p>
   </br>
 
   <%= render 'returnable_items' %>
   </br>
-    Accept a return of your borrowed out item
+    <p>Accept a return of your borrowed out item</p>
   </br>
   <%= render 'allow_return' %>
   </br>
   
-These are your items out on loan:
-</br>
+<p>These are your items out on loan:</p>
   <% @o_items.borrowed.map do |x| %>
     </br><%= link_to "view #{x.name}", item_path(x) %>: borrowed by: <%= x.borrower.name %>
   <% end %>

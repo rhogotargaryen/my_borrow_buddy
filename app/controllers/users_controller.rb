@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     end
     
     def show
+        redirect_to users_path(message: "user not found") if @user.nil?
     end
     
     def edit
