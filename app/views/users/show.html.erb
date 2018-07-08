@@ -14,7 +14,7 @@ User Info:
 
 Items:
 <ul>
-    <% @user.items.each do |x| %>
+    <% Item.owned_by(@user.id).each do |x| %>
     <li><%= link_to "#{x.name}", item_path(x)%></li>
     <% end %>
 </ul>

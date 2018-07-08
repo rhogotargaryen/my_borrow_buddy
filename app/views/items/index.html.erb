@@ -14,8 +14,8 @@
 <p>INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </p>
 <% @items.each do |x| %>
   </br>
-  <p>
-  <%= link_to "#{x.name}", item_path(x) %></p>
+  <p><%= link_to "#{x.name}", item_path(x) %></p>
+   <%= button_to "like this item", liked_items_path(x),  params: { item_id: x.id } %>
 <% end %> 
 </br>
 
@@ -30,12 +30,12 @@
     <p>Items allowed to borrow</p>
   </br>
   <%= render 'allow_borrow' %>
-  </br> <p>Items borrowed to be returned</p>
+  </br> <p>Items borrowed to be returned:</p>
   </br>
 
   <%= render 'returnable_items' %>
   </br>
-    <p>Accept a return of your borrowed out item</p>
+    <p>Accept a return of your borrowed out item:</p>
   </br>
   <%= render 'allow_return' %>
   </br>

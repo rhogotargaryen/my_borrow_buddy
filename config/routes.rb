@@ -1,21 +1,25 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :items
-  
-  resources :items, only: [:show, :index] do
-    resources :transactions, only: [:new, :index]
+
+  resources :items, only: %i[show index] do
+    resources :transactions, only: %i[new index]
   end
-  
+
   resources :users
   
-  resources :users, only: [:show, :index] do 
-    resources :items, only: [:show, :new, :index, :edit]
+  resources :users, only: %i[show index] do
+    resources :items, only: %i[show new index edit]
   end
   
+  resources :liked_items, only: :create
+
   root 'static#welcome'
   get '/test', to: 'static#test'
   get '/signin', to: 'sessions#new'
-  get '/signout', to: "sessions#destroy"
+  get '/signout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
   get '/auth/facebook/callback', to: 'sessions#create'
   post '/signin', to: 'sessions#create'

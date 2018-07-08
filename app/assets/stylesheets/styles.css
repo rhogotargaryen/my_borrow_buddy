@@ -33,7 +33,7 @@ a, a:hover {
 }
 
 #main-content {
-  height:90vh;
+  height:auto;
   margin:5vh;
   margin-right:10vh;
   margin-left:10vh;
@@ -42,5 +42,6 @@ a, a:hover {
   align-items: center!important;
 }
 
-
-
+.field_with_errors input[type='text']{
+  border: 1px solid red;
+}
