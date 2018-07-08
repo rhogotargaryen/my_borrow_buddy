@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
     @item.requested = 'added_item'
     if @item.save
       @item.transactions << Transaction.new(category: 'add_item', recipient_id: current_user.id)
+      LikedItem.create(item_id: @item.id)
       redirect_to item_url(@item)
     else
       @messages = @item.errors
