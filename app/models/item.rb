@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many :transactions
   validates :name, presence: true
+  validates :desc, presence: true
+  validates :value, presence: true
 
   def can_be_borrowed?
     owner_id == user_id && %w[returned added_item].include?(requested)

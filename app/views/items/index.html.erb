@@ -17,6 +17,8 @@
   <p><%= link_to "#{x.name}", item_path(x) %></p>
   <% if !liked_already?(x) %>
    <%= button_to "like this item", liked_items_path(x),  params: { item_id: x.id } %>
+  <% else %>
+    <p>you like this item :)</p>
   <% end %>
 <% end %> 
 </br>

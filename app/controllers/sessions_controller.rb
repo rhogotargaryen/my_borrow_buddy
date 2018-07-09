@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
            session[:user_id] = @user.id
            redirect_to root_path
          elsif
-             redirect_to '/signin'
+             redirect_to signin_path
          end
     end
   end
