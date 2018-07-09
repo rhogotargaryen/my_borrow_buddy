@@ -40,9 +40,12 @@ class ItemsController < ApplicationController
     redirect_to items_path(message: 'item not found') if @item.nil?
   end
 
-  def edit; end
+  def edit
+    @item = Item.find_by(params[:item_id])
+  end
 
   def update
+    @item.update(item_params)
     if @item.save
       redirect_to item_url(@item)
     else

@@ -12,10 +12,10 @@ User Info:
 <% end %>
 </ul>
 
-Items:
+Items:</br></br>
 <ul>
     <% Item.owned_by(@user.id).each do |x| %>
-    <li><%= link_to "#{x.name}", item_path(x)%></li>
+    <li><%= link_to "#{x.name}", item_path(x)%></li></br>
     <% end %>
 </ul>
 

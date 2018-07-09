@@ -16,10 +16,13 @@
   </br>
   <p><%= link_to "#{x.name}", item_path(x) %>
   <% if !liked_already?(x) %>
-   <%= button_to "like this item", liked_items_path(x),  params: { item_id: x.id } %>
+   <%= button_to "like this item", liked_items_path(x),  params: { item_id: x.id } %></br>
   <% else %>
     you like this item :)</p>
   <% end %>
+  <% if @user %>
+     <%= link_to "edit item", edit_item_path(x) %>
+  <%end%>
 <% end %> 
 </br>
 
