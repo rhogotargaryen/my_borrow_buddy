@@ -15,19 +15,21 @@
 <% @items.each do |x| %>
   </br>
   <span><%= link_to "#{x.name}", item_path(x) %>
-  <% if !liked_already?(x) %>
-   <%= button_to "like this item", liked_items_path(x), { item_id: x.id }  %>
-  <% else %>
-    you liked this item 
-      <% if has_rating?(current_user, x) %>
-        and rated it!
-      <% else %>
-        now <%= link_to "rate it", edit_like_path(find_like(current_user, x)) %>
-      <% end %>
-  <% end %>
-  <% if @user %>
-     <%= link_to "edit item", edit_item_path(x) %>
-  <%end%></span>
+  <% if !current_user.nil? %>
+    <% if !liked_already?(x) %>
+     <%= button_to "like this item", liked_items_path(x), { item_id: x.id }  %>
+    <% else %>
+      you liked this item 
+        <% if has_rating?(current_user, x) %>
+          and rated it!
+        <% else %>
+          now <%= link_to "rate it", edit_like_path(find_like(current_user, x)) %>
+        <% end %>
+    <% end %>
+    <% if x.owner_id == current_user.id %>
+        / <%= link_to "edit item", edit_item_path(x) %>
+    <%end%></span>
+  <% end %></br>
 <% end %> 
 </br>
 
@@ -51,7 +53,7 @@
   
 <p>These are your items out on loan:</p>
   <% @o_items.borrowed.map do |x| %>
-    </br><%= link_to "view #{x.name}", item_path(x) %>: borrowed by: <%= x.borrower.name %>
+    </br><span><%= link_to "#{x.name}", item_path(x) %>: borrowed by: <%= link_to "#{x.borrower.name}", user_path(x.borrower) %></span>
   <% end %>
 </br>
 <p>____________________________</p>
