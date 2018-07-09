@@ -41,7 +41,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find_by(params[:item_id])
+    byebug
+    @item = Item.find_by(id: params[:id])
     if @item.owner_id != current_user.id
       redirect_to items_url(message: 'you do not have permission to edit that item')
     end
