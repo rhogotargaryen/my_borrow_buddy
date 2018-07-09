@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    byebug
     @item = Item.find_by(id: params[:id])
     if @item.owner_id != current_user.id
       redirect_to items_url(message: 'you do not have permission to edit that item')
@@ -57,8 +56,8 @@ class ItemsController < ApplicationController
     end
   end
 
-  def delete
-    @item.delete
+  def destroy
+    @item.destroy
     redirect_to user_url(current_user)
   end
 
