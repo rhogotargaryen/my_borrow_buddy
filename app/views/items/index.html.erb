@@ -44,17 +44,19 @@
   </br>
 
   <%= render 'returnable_items' %>
-  </br>
-    <p>Accept a return of your borrowed out item:</p>
+  
+  <p>Accept a return of your borrowed out item:</p>
   </br>
   <%= render 'allow_return' %>
-  </br>
   
 <p>These are your items out on loan:</p>
   <% @o_items.borrowed.map do |x| %>
     </br><%= link_to "view #{x.name}", item_path(x) %>: borrowed by: <%= x.borrower.name %>
   <% end %>
 </br>
+<p>____________________________</p>
+<p><%= link_to "Click Here to view your liked items", user_liked_items_url(@user) %></p>
+  
  
 
 <% end %>    

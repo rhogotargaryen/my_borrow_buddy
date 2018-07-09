@@ -10,5 +10,11 @@ class LikesController < ApplicationController
         redirect_to items_path
     end
     
+    def destroy
+        @like = Like.find_by(id: params[:id])
+        @like.destroy
+        redirect_to items_path
+    end
+    
 end
     

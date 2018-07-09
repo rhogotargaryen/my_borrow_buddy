@@ -12,11 +12,12 @@ Rails.application.routes.draw do
   
   resources :users, only: %i[show index] do
     resources :items, only: %i[show new index edit]
+    resources :liked_items, only: :index
   end
   
   resources :liked_items, only: :create
   
-  resources :likes, only: %i[edit update show]
+  resources :likes, only: %i[edit update show destroy]
 
   root 'static#welcome'
   get '/test', to: 'static#test'

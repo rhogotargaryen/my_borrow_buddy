@@ -8,6 +8,14 @@ module ApplicationHelper
     end
     a
   end
+  
+  def cust_obj_info(user, *args)
+    a = []
+    user.attributes.each do |k, v|
+      a << "#{k.capitalize}: #{v}" if args.include?(k)
+    end
+    a
+  end
 
   def show_item_info(item)
     a = []
