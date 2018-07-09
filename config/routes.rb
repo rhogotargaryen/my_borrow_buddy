@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
   
   resources :liked_items, only: :create
+  
+  resources :likes, only: %i[edit update show]
 
   root 'static#welcome'
   get '/test', to: 'static#test'
@@ -24,4 +26,5 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback', to: 'sessions#create'
   post '/signin', to: 'sessions#create'
   post '/items/:item_id/transactions/new', to: 'transactions#new'
+  post '/ratings/:like_id', to: 'likes#rating'
 end

@@ -14,4 +14,7 @@ module ItemHelper
         return a.users.count
     end
     
+    def find_like(user, item)
+        user.likes.find_by(liked_item_id: item.id)
+    end
 end

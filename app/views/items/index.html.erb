@@ -18,7 +18,7 @@
   <% if !liked_already?(x) %>
    <%= link_to "like this item", liked_items_path(x),  params: { item_id: x.id, method: :post } %>
   <% else %>
-    you like this item :)
+    you like this item, now <%= link_to "rate it", edit_like_path(find_like(current_user, x)) %>
   <% end %>
   <% if @user %>
      <%= link_to "edit item", edit_item_path(x) %>
@@ -30,12 +30,10 @@
   <p>Borrowable Items:</p>
     <%= render'borrowable_items', al_items: Item.all %>
 <% end %>
-</br>
  
 <% if @user && @user == current_user %> 
   </br>
     <p>Items allowed to borrow</p>
-  </br>
   <%= render 'allow_borrow' %>
   </br> <p>Items borrowed to be returned:</p>
   </br>
