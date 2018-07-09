@@ -14,15 +14,20 @@
 <p>INDEXING ALL <%= "#{@user.name}'s" if @user %> ITEMS: </p>
 <% @items.each do |x| %>
   </br>
-  <p><%= link_to "#{x.name}", item_path(x) %>
+  <span><%= link_to "#{x.name}", item_path(x) %>
   <% if !liked_already?(x) %>
-   <%= link_to "like this item", liked_items_path(x),  params: { item_id: x.id, method: :post } %>
+   <%= button_to "like this item", liked_items_path(x), { item_id: x.id }  %>
   <% else %>
-    you like this item, now <%= link_to "rate it", edit_like_path(find_like(current_user, x)) %>
+    you liked this item 
+      <% if has_rating?(current_user, x) %>
+        and rated it!
+      <% else %>
+        now <%= link_to "rate it", edit_like_path(find_like(current_user, x)) %>
+      <% end %>
   <% end %>
   <% if @user %>
      <%= link_to "edit item", edit_item_path(x) %>
-  <%end%></p>
+  <%end%></span>
 <% end %> 
 </br>
 

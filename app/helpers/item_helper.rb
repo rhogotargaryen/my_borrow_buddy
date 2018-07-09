@@ -17,4 +17,11 @@ module ItemHelper
     def find_like(user, item)
         user.likes.find_by(liked_item_id: item.id)
     end
+    
+    def has_rating?(user, item)
+        a = find_like(user, item)
+        return !a.rating.nil?
+    end
+        
+        
 end
