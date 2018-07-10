@@ -22,6 +22,22 @@ module ItemHelper
         a = find_like(user, item)
         return !a.rating.nil?
     end
+    
+    def l_item_rating(item)
+        a = LikedItem.find_by(id: item.id)
+        b = 0
+        c = []
+        a.likes.map do |x|
+          if !x.rating.nil?
+              c << b += x.rating
+          end
+        end
+        if b != 0
+            return b / c.length
+        else
+            return "currently item is unrated"
+        end
+    end
         
         
 end
