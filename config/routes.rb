@@ -9,14 +9,14 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  
+
   resources :users, only: %i[show index] do
     resources :items, only: %i[show new index edit]
     resources :liked_items, only: :index
   end
-  
+
   resources :liked_items, only: %i[create show]
-  
+
   resources :likes, only: %i[edit update show destroy]
 
   root 'static#welcome'

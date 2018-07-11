@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,50 +12,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_09_061933) do
-
-  create_table "items", force: :cascade do |t|
-    t.string "name"
-    t.string "desc"
-    t.integer "value"
-    t.integer "owner_id"
-    t.integer "user_id"
-    t.string "requested"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+ActiveRecord::Schema.define(version: 20_180_709_061_933) do
+  create_table 'items', force: :cascade do |t|
+    t.string 'name'
+    t.string 'desc'
+    t.integer 'value'
+    t.integer 'owner_id'
+    t.integer 'user_id'
+    t.string 'requested'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "liked_items", force: :cascade do |t|
-    t.integer "item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'liked_items', force: :cascade do |t|
+    t.integer 'item_id'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "liked_item_id"
-    t.string "comment"
-    t.integer "rating"
+  create_table 'likes', force: :cascade do |t|
+    t.integer 'user_id'
+    t.integer 'liked_item_id'
+    t.string 'comment'
+    t.integer 'rating'
   end
 
-  create_table "transactions", force: :cascade do |t|
-    t.string "category"
-    t.integer "recipient_id"
-    t.string "sender_id"
-    t.integer "item_id"
-    t.datetime "date_of_return"
-    t.boolean "settled"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'transactions', force: :cascade do |t|
+    t.string 'category'
+    t.integer 'recipient_id'
+    t.string 'sender_id'
+    t.integer 'item_id'
+    t.datetime 'date_of_return'
+    t.boolean 'settled'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "username"
-    t.string "password_digest"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'users', force: :cascade do |t|
+    t.string 'name'
+    t.string 'username'
+    t.string 'password_digest'
+    t.string 'email'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
-
 end

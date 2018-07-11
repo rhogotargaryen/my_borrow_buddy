@@ -8,7 +8,7 @@ module ApplicationHelper
     end
     a
   end
-  
+
   def cust_obj_info(user, *args)
     a = []
     user.attributes.each do |k, v|
