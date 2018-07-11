@@ -28,4 +28,20 @@ module ApplicationHelper
     end
     a
   end
+  
+  def disp_transactions(attr_array)
+    attr_array.map do |x|
+      if x.include?("Recipient_id")
+        if attr_array.include?("Category: add_item")
+          return ["this item was added by #{User.find_by(id: x.match(/\d/)[0]).name}"]
+        else
+          x = "Sent to:  #{User.find_by(id: x.match(/\d/)[0]).name}"
+        end
+      elsif x.include?("Sender_id")
+        x = "Sent by: #{User.find_by(id: x.match(/\d/)[0]).name}"
+      else
+        x
+      end
+    end
+  end
 end

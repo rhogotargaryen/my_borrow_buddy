@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :liked_items, only: %i[create show]
 
+  resources :transactions, oly: :show
+
   resources :likes, only: %i[edit update show destroy]
 
   root 'static#welcome'

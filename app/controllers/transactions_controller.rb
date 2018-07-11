@@ -21,6 +21,10 @@ class TransactionsController < ApplicationController
     @item = Item.find_by(id: params[:item_id])
     @transactions = @item.transactions
   end
+  
+  def show
+    @transaction = Transaction.find_by(id: params[:id])
+  end
 
   private
 
