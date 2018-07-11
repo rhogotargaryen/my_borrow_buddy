@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :liked_items, only: :index
   end
   
-  resources :liked_items, only: :create
+  resources :liked_items, only: %i[create show]
   
   resources :likes, only: %i[edit update show destroy]
 

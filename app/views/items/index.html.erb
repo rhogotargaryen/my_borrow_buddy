@@ -17,7 +17,7 @@
   <span><%= link_to "#{x.name}", item_path(x) %>
   <% if !current_user.nil? %>
     <% if !liked_already?(x) %>
-     <%= button_to "like this item", liked_items_path(x), { item_id: x.id }  %>
+     <%= button_to "like this item", liked_items_path, params: { id: x.id }, class: 'sub_but' %>
     <% else %>
       you liked this item 
         <% if has_rating?(current_user, x) %>
@@ -40,25 +40,23 @@
  
 <% if @user && @user == current_user %> 
   </br>
-    <p>Items allowed to borrow</p>
+    <p>Items allowed to borrow:</p>
+    
   <%= render 'allow_borrow' %>
-  </br> <p>Items borrowed to be returned:</p>
-  </br>
+  
+  <p>Items borrowed to be returned:</p>
 
   <%= render 'returnable_items' %>
   
-  <p>Accept a return of your borrowed out item:</p>
-  </br>
+  <p>Accept a return of your borrowed out item:</p></br>
+  
   <%= render 'allow_return' %>
   
 <p>These are your items out on loan:</p>
   <% @o_items.borrowed.map do |x| %>
     </br><span><%= link_to "#{x.name}", item_path(x) %>: borrowed by: <%= link_to "#{x.borrower.name}", user_path(x.borrower) %></span>
   <% end %>
-</br>
-<p>____________________________</p>
-<p><%= link_to "Click Here to view your liked items", user_liked_items_url(@user) %></p>
-  
- 
-
+ </br>
+ <p>____________________________</p>
+ <p><%= link_to "Click Here to view your liked items", user_liked_items_url(@user) %></p>
 <% end %>    

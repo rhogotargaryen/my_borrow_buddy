@@ -1,7 +1,7 @@
 class LikedItemsController < ApplicationController
     
     def create
-        Like.create(user_id: current_user.id, liked_item_id: params[:format])
+        Like.create(user_id: current_user.id, liked_item_id: params[:id])
         redirect_to items_path
     end
     

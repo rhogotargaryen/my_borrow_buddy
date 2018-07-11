@@ -27,6 +27,19 @@ a {
   
 }
 
+input[type="submit"] {
+     border:none; 
+     padding: 5px;
+     font: inherit;
+     /*border is optional*/
+     cursor: pointer;
+  margin-right:5px;
+  margin-left:5px;
+  background-color:rgba(255,255,255,0.32);
+  color:rgba(255,255,255,0.92);
+  
+}
+
 a, a:hover {
   color: white;
   text-decoration: none;
@@ -56,4 +69,6 @@ a, a:hover {
 
 .button_to {
   display: inline;
+
 }
+
